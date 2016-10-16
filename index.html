@@ -4,7 +4,9 @@
   </head>
 
   <body ng-controller='ParentCtrl as parent'>
-    <sibling ng-repeat='i in parent.arr' sib-id='i'></sibling>
+    <sibling ng-hide='parent.hideMe' ng-repeat='i in parent.arr' sib-id='i'></sibling>
+
+    <button ng-click='parent.toggleHide()'>Hide yo' keeds!</button>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src='js/app.js'></script>

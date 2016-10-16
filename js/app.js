@@ -5,6 +5,13 @@ app.controller('ParentCtrl', function () {
   var vm = this;
 
   vm.arr = [1,2,3,4,5];
+
+  vm.hideMe = false;
+
+  vm.toggleHide = function () {
+    console.log('this is firing');
+    vm.hideMe = !vm.hideMe;
+  };
 });
 
 app.controller('SiblingCtrl', [function() {
