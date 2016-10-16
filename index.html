@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+  <head>
+  </head>
+
+  <body ng-controller='ParentCtrl as parent'>
+    <sibling ng-repeat='i in parent.arr' sib-id='i'></sibling>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src='js/app.js'></script>
+  </body>
+</html>
