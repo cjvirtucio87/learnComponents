@@ -1,7 +1,7 @@
 var app = angular.module('app', []);
 
-
-app.controller('ParentCtrl', function () {
+// MasterCtrl is for the whole app.
+app.controller('MasterCtrl', function () {
   var vm = this;
 
   vm.arr = [1,2,3,4,5];
@@ -14,6 +14,7 @@ app.controller('ParentCtrl', function () {
   };
 });
 
+// SiblingCtrl is for each child directive.
 app.controller('SiblingCtrl', [function() {
   var vm = this;
 
