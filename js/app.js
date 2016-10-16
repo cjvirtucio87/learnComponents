@@ -8,14 +8,12 @@ var app = angular.module('app', []);
 // MasterCtrl is for the whole app.
 app.controller('MasterCtrl', function () {
   var vm = this;
-
   vm.arr = [1,2,3,4,5];
-
   vm.hideMe = false;
-
   vm.toggleHide = function () {
     vm.hideMe = !vm.hideMe;
   };
+  vm.dataForParentDir = 'hello, from master';
 });
 
 // SiblingCtrl is for each child directive.
@@ -50,3 +48,51 @@ app.directive('sibling', function () {
 });
 
 // II. PARENT AND CHILD DIRECTIVES.
+app.controller('ParentCtrl', [function () {
+  var vm = this;
+
+  vm.hideMe = false;
+  vm.toggleHideMe = function () {
+    console.log('this is firing');
+    vm.hideMe = !vm.hideMe;
+  };
+
+  // You can either have the 'dumb' component require the parent, or pass on a callback to
+  // the 'dumb' component.
+  vm.onClick = function (data) {
+    console.log(data);
+  };
+}]);
+
+// 'Smart' component. Knows state.
+app.directive('parent', [function () {
+  return {
+    controller: 'ParentCtrl',
+    controllerAs: 'ctrl',
+    restrict: 'E',
+    scope: {
+      data: '<'
+    },
+    templateUrl: 'templates/parent.html'
+  };
+}]);
+
+// 'Dumb' component. Doesn't know state. Only interacts with DOM and sends events up the
+// tree.
+app.directive('child', [function () {
+  return {
+    require: '^parent',
+    restrict: 'E',
+    scope: {
+      data: '<'
+    },
+    templateUrl: 'templates/child.html',
+    // Requiring a directive as a controller gives you a fourth argument: 'ctrl'.
+    // ctrl represents the required directive.
+    link: function (scope, elem, attrs, ctrl) {
+      scope.clicky = function () {
+        ctrl.onClick(scope.data);
+      };
+    }
+  };
+}]);

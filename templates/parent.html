@@ -1,0 +1,10 @@
+<p>I am the parent</p>
+
+<child
+ng-repeat='meh in [1,2,3,4,5]'
+ng-hide='ctrl.hideMe'
+data='data'>
+</child>
+
+<!-- Because of the alias, you now have access to the controller as 'ctrl'. -->
+<button ng-click='ctrl.toggleHideMe()'>Hide yo' keeds pt. 2!</button>

@@ -4,11 +4,15 @@
   </head>
 
   <body ng-controller='MasterCtrl as master'>
+    <!-- Master and Siblings -->
     <p>Each controller has its own individual scope.</p>
     <p>A controller is a constructor function. Everytime you attach one to a directive, that directive gets its own instance of a controller.</p>
     <sibling ng-hide='master.hideMe' ng-repeat='i in master.arr' sib-id='i'></sibling>
 
     <button ng-click='master.toggleHide()'>Hide yo' keeds!</button>
+
+    <!-- Parent and Children -->
+    <parent data='master.dataForParentDir'></parent>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src='js/app.js'></script>
